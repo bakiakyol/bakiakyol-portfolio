@@ -7,13 +7,21 @@
  * https://github.com/sanity-io/next-sanity
  */
 
-import { NextStudio } from 'next-sanity/studio'
-import config from '../../../../sanity.config'
+import { NextStudio } from "next-sanity/studio";
+import { notFound } from "next/navigation";
+import config from "../../../../sanity.config";
 
-export const dynamic = 'force-static'
+export const dynamic = "force-static";
 
-export { metadata, viewport } from 'next-sanity/studio'
+export { metadata, viewport } from "next-sanity/studio";
 
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  const studioEnabledInProduction =
+    process.env.NEXT_PUBLIC_ENABLE_STUDIO === "true";
+
+  if (process.env.NODE_ENV === "production" && !studioEnabledInProduction) {
+    notFound();
+  }
+
+  return <NextStudio config={config} />;
 }
