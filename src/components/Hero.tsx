@@ -96,6 +96,44 @@ export default function Hero() {
               <p className="mt-6 sm:mt-7 md:mt-8 text-sm sm:text-base leading-7 text-deep-ocean/70 max-w-2xl">
                 {about.biography}
               </p>
+
+              {/* Education & Interests Info */}
+              <div className="mt-6 sm:mt-7 space-y-4 w-full max-w-2xl">
+                <div className="flex flex-col sm:flex-row sm:gap-8 gap-4">
+                  <div className="flex-1">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-pharmacy-green/70">
+                      Üniversite
+                    </p>
+                    <p className="mt-1.5 text-sm sm:text-base text-deep-ocean/80">
+                      {about.university}
+                    </p>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-pharmacy-green/70">
+                      Mezuniyet Yılı
+                    </p>
+                    <p className="mt-1.5 text-sm sm:text-base text-deep-ocean/80">
+                      {about.graduationYear}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-pharmacy-green/70">
+                    İlgi Alanları
+                  </p>
+                  <div className="mt-2.5 flex flex-wrap gap-1.5 sm:gap-2 justify-center md:justify-start">
+                    {about.interests.map((interest, index) => (
+                      <span
+                        key={index}
+                        className="px-2.5 py-1 text-xs rounded-full bg-pharmacy-green/10 text-deep-ocean/70 border border-pharmacy-green/20 whitespace-nowrap"
+                      >
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
               <div className="mt-8 flex gap-4 justify-center md:justify-start">
                 <a
                   href="https://linkedin.com/in/bakiakyol"

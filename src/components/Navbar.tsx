@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { smoothScrollTo } from "./SmoothScroll";
 
 const navItems = [
   { label: "Hakkımda", href: "#hakkimda" },
@@ -22,6 +23,15 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    smoothScrollTo(href);
+    closeMenu();
+  };
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-deep-ocean/10 bg-clinical-white/95 backdrop-blur-md">
@@ -29,7 +39,8 @@ export default function Navbar() {
           aria-label="Ana navigasyon"
           className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6"
         >
-          {/* Desktop Navigation */}
+          {/* DeskonClick={(e) => handleLinkClick(e, item.href)}
+                  top Navigation */}
           <ul className="hidden flex-wrap items-center gap-5 text-sm text-deep-ocean/70 md:flex md:gap-7">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -86,7 +97,7 @@ export default function Navbar() {
             >
               <Link
                 href={item.href}
-                onClick={closeMenu}
+                onClick={(e) => handleLinkClick(e, item.href)}
                 className="block px-6 py-4 text-center text-lg font-medium text-deep-ocean/70 transition-colors active:bg-deep-ocean/5 hover:text-deep-ocean hover:bg-deep-ocean/5"
               >
                 {item.label}

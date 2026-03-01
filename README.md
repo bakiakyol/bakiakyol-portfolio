@@ -1,15 +1,14 @@
-# Baki Akyol Portfolio
+# Portfolio
 
-Next.js ve Sanity CMS ile oluşturulmuş modern portfolio sitesi.
+A modern portfolio website built with Next.js and Sanity CMS.
 
-## Özellikler
+## Features
 
-- 📱 **Responsive Design** - Tüm cihazlarda uyumlu
-- 🎨 **Modern UI** - Framer Motion animasyonları
-- 📝 **Sanity CMS** - Dinamik content yönetimi
-- 🖼️ **Image Optimization** - Next.js Image component
-- 🎯 **Smooth Scrolling** - Lenis scroll library
-- 🌙 **Accessibility** - WCAG uyumlu
+- Responsive design with Tailwind CSS
+- Content management with Sanity CMS
+- Smooth animations with Framer Motion
+- Optimized image handling
+- TypeScript for type safety
 
 ## Tech Stack
 
@@ -17,86 +16,82 @@ Next.js ve Sanity CMS ile oluşturulmuş modern portfolio sitesi.
 - **CMS**: Sanity
 - **Styling**: Tailwind CSS 4
 - **Animations**: Framer Motion
-- **Icons**: Lucide React
 - **Language**: TypeScript
 
-## Setup
+## Getting Started
 
-### 1. Environment Variables
+### Prerequisites
 
-`.env.local` dosyası oluşturun:
+- Node.js 20+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env.local` file:
 
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 ```
 
-### 2. Dependencies Yükleyin
-
-```bash
-npm install
-```
-
-### 3. Development Server
+4. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-`http://localhost:3000` açıp kontrol edin.
+5. Open [http://localhost:3000](http://localhost:3000)
 
-## Sanity CMS
+## Sanity Studio
 
-### Studio Erişimi
+Access the studio at [http://localhost:3000/studio](http://localhost:3000/studio)
 
-```
-http://localhost:3000/studio
-```
+### Content Types
 
-### Veri Türleri
+- **About** - About me section (singleton)
+- **Experience** - Work experience
+- **Project** - Portfolio projects with images
+- **Certificate** - Certifications
 
-- **About** - Hakkımda (singleton)
-- **Experience** - Deneyimler
-- **Project** - Projeler (görseller dahil)
-- **Certificate** - Sertifikalar
-
-## Build & Deploy
-
-### Production Build
+## Scripts
 
 ```bash
-npm run build
-npm start
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
 ```
 
-### Vercel Deploy
+## Deployment
 
-1. GitHub'a push edin
-2. Vercel'e connect edin
-3. Environment variables ayarlayın
-4. Deploy!
+### Vercel (Recommended)
 
-### Production Ayarları
+1. Push to GitHub
+2. Import project in Vercel
+3. Add environment variables
+4. Deploy
 
-`src/sanity/lib/client.ts` dosyasında:
-
-```typescript
-useCdn: true // Production için CDN aktif
-```
-
-## File Structure
+## Project Structure
 
 ```
 src/
-├── app/                    # Next.js app directory
+├── app/                    # Next.js app router
 ├── components/             # React components
 ├── sanity/
-│   ├── lib/               # Sanity utilities
-│   ├── schemaTypes/       # CMS schemas
-│   └── structure.ts       # Studio structure
-└── public/                # Static files
+│   ├── lib/               # Sanity client & utilities
+│   ├── schemaTypes/       # Content schemas
+│   └── structure.ts       # Studio customization
+└── public/                # Static assets
 ```
 
 ## License
 
-© 2026 Baki Akyol. Tüm hakları saklıdır.
+MIT
