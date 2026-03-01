@@ -16,10 +16,10 @@ export const dynamic = "force-static";
 export { metadata, viewport } from "next-sanity/studio";
 
 export default function StudioPage() {
-  const studioEnabledInProduction =
-    process.env.NEXT_PUBLIC_ENABLE_STUDIO === "true";
+  const studioDisabledInProduction =
+    process.env.NEXT_PUBLIC_ENABLE_STUDIO === "false";
 
-  if (process.env.NODE_ENV === "production" && !studioEnabledInProduction) {
+  if (process.env.NODE_ENV === "production" && studioDisabledInProduction) {
     notFound();
   }
 
