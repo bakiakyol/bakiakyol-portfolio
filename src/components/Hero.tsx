@@ -107,7 +107,7 @@ export default function Hero() {
                   <Linkedin className="w-5 h-5 text-deep-ocean hover:text-pharmacy-green transition-colors" />
                 </a>
                 <a
-                  href="https://instagram.com/bakiakyol"
+                  href="https://instagram.com/akyolbaki0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 transition-colors duration-300"
@@ -116,7 +116,7 @@ export default function Hero() {
                   <Instagram className="w-5 h-5 text-deep-ocean hover:text-pharmacy-green transition-colors" />
                 </a>
                 <a
-                  href="mailto:baki@example.com"
+                  href="mailto:info@bakiakyol.com"
                   className="p-3 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 transition-colors duration-300"
                   aria-label="Email"
                 >
