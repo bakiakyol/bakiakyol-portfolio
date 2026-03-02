@@ -40,6 +40,8 @@ npm install
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SITE_URL=https://bakiakyol.com
+NEXT_PUBLIC_ENABLE_STUDIO=true
 ```
 
 4. Run the development server:
@@ -52,7 +54,10 @@ npm run dev
 
 ## Sanity Studio
 
-Access the studio at [http://localhost:3000/studio](http://localhost:3000/studio)
+Access the studio at:
+
+- Local: [http://localhost:3000/admin](http://localhost:3000/admin)
+- Production: [https://bakiakyol.com/admin](https://bakiakyol.com/admin)
 
 ### Content Types
 
