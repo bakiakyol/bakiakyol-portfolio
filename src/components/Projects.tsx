@@ -43,9 +43,9 @@ export default function Projects() {
   return (
     <section id="projeler" className="w-full py-24">
       <div className="max-w-4xl">
-        <h2 className="font-bold text-deep-ocean">Projeler</h2>
+        <h2 className="font-bold text-deep-ocean">Projeler ve Katılımlar</h2>
         <p className="mt-3 text-deep-ocean/55">
-          Uygulama ve etki odaklı çalışmalar
+          Sağlık sektöründe değer yaratan akademik ve sosyal projeler 
         </p>
       </div>
 
