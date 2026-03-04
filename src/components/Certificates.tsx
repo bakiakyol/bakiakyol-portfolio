@@ -34,7 +34,8 @@ export default function Certificates() {
       <div className="max-w-4xl">
         <h2 className="font-bold text-deep-ocean">Sertifikalar</h2>
         <p className="mt-3 text-deep-ocean/55">
-          Sürekli öğrenme ve gelişim kayıtları
+          Mesleki yetkinlikleri ve teknik donanımı destekleyen nitelikli
+          eğitimler
         </p>
       </div>
 
