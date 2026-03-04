@@ -49,6 +49,17 @@ export default function Footer() {
               <p className="text-xs text-deep-ocean/40 italic">
                 Yan etkisi yoktur...
               </p>
+              <p className="text-xs text-deep-ocean/30 mt-4">
+                made by{" "}
+                <a
+                  href="https://eftekin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-pharmacy-green transition-colors duration-300"
+                >
+                  eftekin
+                </a>
+              </p>
             </div>
           </div>
         </div>
