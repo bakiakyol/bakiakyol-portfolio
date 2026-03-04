@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Linkedin, Instagram, Mail } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { aboutQuery } from "@/sanity/lib/queries";
-import profileImage from "../../public/profile.jpeg";
+import profileImage from "../../public/profile.jpg";
 
 type AboutData = {
   _id: string;

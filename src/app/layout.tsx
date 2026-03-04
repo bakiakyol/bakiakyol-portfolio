@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: profileDescription,
     images: [
       {
-        url: "/profile.jpeg",
+        url: "/profile.jpg",
         width: 1200,
         height: 630,
         alt: "Baki Akyol",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: profileTitle,
     description: profileDescription,
-    images: ["/profile.jpeg"],
+    images: ["/profile.jpg"],
   },
 };
 
