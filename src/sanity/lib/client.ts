@@ -6,5 +6,5 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === "production", // Production'da CDN, development'ta güncel veri
+  useCdn: false, // Server-side fetch kullandığı için CDN'e gerek yok; revalidate ile cache yönetilir
 });
