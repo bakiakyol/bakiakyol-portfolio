@@ -39,7 +39,12 @@ export const projectsQuery = `*[_type == "project"] | order(_createdAt desc) {
       _id,
       url,
       metadata{
-        dimensions
+        dimensions,
+        palette {
+          dominant {
+            background
+          }
+        }
       }
     },
     hotspot,

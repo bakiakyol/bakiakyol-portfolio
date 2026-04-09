@@ -19,17 +19,96 @@ type ProjectItem = {
     hotspot?: any;
     crop?: any;
   };
+  dominantColor?: string;
 };
 
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const getAreaDominantColor = (imageUrl: string): Promise<string> => {
+    return new Promise((resolve) => {
+      if (typeof window === "undefined") {
+        resolve("#f8fafc");
+        return;
+      }
+
+      const img = new window.Image();
+      img.crossOrigin = "anonymous";
+      img.referrerPolicy = "no-referrer";
+
+      img.onload = () => {
+        try {
+          const sampleSize = 48;
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+          if (!ctx) {
+            resolve("#f8fafc");
+            return;
+          }
+
+          canvas.width = sampleSize;
+          canvas.height = sampleSize;
+          ctx.drawImage(img, 0, 0, sampleSize, sampleSize);
+
+          const { data } = ctx.getImageData(0, 0, sampleSize, sampleSize);
+          const colorCounts = new Map<string, number>();
+          let topColor = "#f8fafc";
+          let topCount = 0;
+
+          for (let i = 0; i < data.length; i += 4) {
+            const alpha = data[i + 3];
+            if (alpha < 128) continue;
+
+            const r = Math.round(data[i] / 16) * 16;
+            const g = Math.round(data[i + 1] / 16) * 16;
+            const b = Math.round(data[i + 2] / 16) * 16;
+            const key = `${r},${g},${b}`;
+            const nextCount = (colorCounts.get(key) ?? 0) + 1;
+
+            colorCounts.set(key, nextCount);
+
+            if (nextCount > topCount) {
+              topCount = nextCount;
+              topColor = `rgb(${r}, ${g}, ${b})`;
+            }
+          }
+
+          resolve(topColor);
+        } catch {
+          resolve("#f8fafc");
+        }
+      };
+
+      img.onerror = () => resolve("#f8fafc");
+      img.src = imageUrl;
+    });
+  };
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const data = await client.fetch(projectsQuery);
-        setProjects(data);
+
+        const projectsWithColors = await Promise.all(
+          data.map(async (project: ProjectItem) => {
+            if (!project.image?.asset?.url) {
+              return project;
+            }
+
+            const dominantColor = await getAreaDominantColor(
+              urlFor(project.image).width(64).height(64).fit("fill").url(),
+            );
+
+            return {
+              ...project,
+              dominantColor,
+            };
+          }),
+        );
+
+        setProjects(projectsWithColors);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -68,7 +147,12 @@ export default function Projects() {
               }}
               className="rounded-2xl border border-deep-ocean/10 bg-white p-6 shadow-sm"
             >
-              <div className="mb-5 flex aspect-[16/10] w-full items-center justify-center rounded-xl border border-deep-ocean/10 bg-clinical-white overflow-hidden">
+              <div
+                className="mb-5 flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-xl border border-deep-ocean/10 bg-clinical-white"
+                style={{
+                  backgroundColor: project.dominantColor ?? "#f8fafc",
+                }}
+              >
                 {project.image?.asset?.url ? (
                   <Image
                     src={urlFor(project.image).url()}

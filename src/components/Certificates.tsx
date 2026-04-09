@@ -63,7 +63,7 @@ export default function Certificates() {
               }}
               className="group rounded-xl border border-deep-ocean/10 bg-white p-5"
             >
-              <div className="h-full rounded-lg border-2 border-deep-ocean/20 bg-white p-4 transition-all duration-300 group-hover:border-deep-ocean/40 group-hover:shadow-md">
+              <div className="h-full rounded-lg bg-white p-4 transition-all duration-300 group-hover:shadow-md">
                 <div className="text-sm font-medium text-deep-ocean/80">
                   {certificate.certificateName}
                 </div>

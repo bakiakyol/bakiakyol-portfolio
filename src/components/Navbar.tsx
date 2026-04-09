@@ -82,7 +82,7 @@ export default function Navbar() {
             <button
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
-              className="flex items-center justify-center px-3 py-1 rounded-md border border-pharmacy-green/20 text-xs font-medium text-deep-ocean/70 hover:text-deep-ocean hover:border-pharmacy-green/40 hover:scale-110 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
+              className="flex h-7 w-10 items-center justify-center rounded-md border border-pharmacy-green/20 text-xs font-medium text-deep-ocean/70 hover:text-deep-ocean hover:border-pharmacy-green/40 hover:scale-110 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
               aria-label="Dil değiştir"
             >
               {language === 'tr' ? 'TR' : 'EN'}
@@ -97,17 +97,17 @@ export default function Navbar() {
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
-                className="absolute top-full right-0 mt-0 w-16 bg-white border border-pharmacy-green/20 rounded-md shadow-lg z-50"
+                className="absolute top-full right-0 mt-0 w-10 overflow-hidden rounded-md border border-pharmacy-green/20 bg-white shadow-lg z-50"
               >
                 <button
                   onClick={() => setLanguage('tr')}
-                  className="w-full px-3 py-2 text-xs text-left hover:bg-deep-ocean/5 transition-colors"
+                  className="w-full py-2 text-center text-xs hover:bg-deep-ocean/5 transition-colors"
                 >
                   TR
                 </button>
                 <button
                   onClick={() => setLanguage('en')}
-                  className="w-full px-3 py-2 text-xs text-left hover:bg-deep-ocean/5 transition-colors"
+                  className="w-full py-2 text-center text-xs hover:bg-deep-ocean/5 transition-colors"
                 >
                   EN
                 </button>

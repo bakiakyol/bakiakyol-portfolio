@@ -73,7 +73,7 @@ export default function Hero() {
         className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-deep-ocean/5 hidden sm:block"
       />
 
-      <div className="relative flex flex-col md:grid md:grid-cols-12 items-center gap-10 md:gap-12">
+      <div className="relative flex flex-col md:grid md:grid-cols-12 items-start gap-10 md:gap-12">
         {/* Text Content */}
         <motion.div
           variants={fadeUp}
@@ -178,7 +178,7 @@ export default function Hero() {
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
-          className="z-10 w-full md:col-span-5 md:-ml-10 flex justify-center md:justify-end order-first md:order-none"
+          className="z-10 w-full md:col-span-5 md:-ml-10 md:pt-24 flex justify-center md:justify-end order-first md:order-none"
         >
           <div className="w-full max-w-48 sm:max-w-xs md:max-w-xs lg:max-w-sm overflow-hidden rounded-[2rem] border border-pharmacy-green/45 bg-white/90 shadow-[0_16px_40px_-34px_rgba(15,23,42,0.4)] backdrop-blur-sm">
             <div className="aspect-square w-full">
