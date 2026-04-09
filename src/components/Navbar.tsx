@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { smoothScrollTo } from "./SmoothScroll";
+import { useLanguage } from "@/context/LanguageContext";
 
 const navItems = [
   { label: "Hakkımda", href: "#hakkimda" },
@@ -14,6 +16,8 @@ const navItems = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -68,9 +72,49 @@ export default function Navbar() {
             )}
           </button>
 
-          <span className="text-sm font-semibold tracking-[0.1em] text-pharmacy-green">
-            Baki Akyol
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="text-sm font-semibold tracking-[0.1em] text-pharmacy-green">
+              Baki Akyol
+            </span>
+
+          <div className="relative">
+            {/* Language Toggle Button */}
+            <button
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+              className="flex items-center justify-center px-3 py-1 rounded-md border border-pharmacy-green/20 text-xs font-medium text-deep-ocean/70 hover:text-deep-ocean hover:border-pharmacy-green/40 hover:scale-110 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
+              aria-label="Dil değiştir"
+            >
+              {language === 'tr' ? 'TR' : 'EN'}
+            </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+                className="absolute top-full right-0 mt-0 w-16 bg-white border border-pharmacy-green/20 rounded-md shadow-lg z-50"
+              >
+                <button
+                  onClick={() => setLanguage('tr')}
+                  className="w-full px-3 py-2 text-xs text-left hover:bg-deep-ocean/5 transition-colors"
+                >
+                  TR
+                </button>
+                <button
+                  onClick={() => setLanguage('en')}
+                  className="w-full px-3 py-2 text-xs text-left hover:bg-deep-ocean/5 transition-colors"
+                >
+                  EN
+                </button>
+              </motion.div>
+            )}
+          </div>
+          </div>
         </nav>
       </header>
 

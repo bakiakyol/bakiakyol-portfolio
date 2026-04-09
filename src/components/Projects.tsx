@@ -75,7 +75,7 @@ export default function Projects() {
                     alt={project.projectName}
                     width={400}
                     height={250}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 ) : (
                   <span className="text-xs tracking-[0.08em] text-deep-ocean/40 uppercase">

@@ -63,8 +63,8 @@ export default function Certificates() {
               }}
               className="group rounded-xl border border-deep-ocean/10 bg-white p-5"
             >
-              <div className="h-full rounded-lg border border-transparent bg-gradient-to-r from-pharmacy-green/0 via-pharmacy-green/5 to-pharmacy-green/0 p-0.5 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="rounded-md bg-white px-3 py-4 text-sm font-medium text-deep-ocean/80">
+              <div className="h-full rounded-lg border-2 border-deep-ocean/20 bg-white p-4 transition-all duration-300 group-hover:border-deep-ocean/40 group-hover:shadow-md">
+                <div className="text-sm font-medium text-deep-ocean/80">
                   {certificate.certificateName}
                 </div>
               </div>

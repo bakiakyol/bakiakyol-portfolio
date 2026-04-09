@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bakiakyol.com";
 const profileTitle = "Baki Akyol | İstinye Üniversitesi Eczacılık Öğrencisi";
@@ -61,7 +62,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
