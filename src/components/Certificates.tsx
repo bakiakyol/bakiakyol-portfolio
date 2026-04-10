@@ -72,11 +72,11 @@ export default function Certificates() {
               whileHover={{
                 y: -6,
                 scale: 1.01,
-                boxShadow: "0 16px 28px -20px rgba(15, 23, 42, 0.35)",
+                boxShadow: "0 18px 36px -24px rgba(168, 85, 247, 0.35)",
               }}
-              className="group rounded-xl border border-deep-ocean/10 bg-white p-5"
+              className="group rounded-xl border border-deep-ocean/10 bg-white/5 p-5 backdrop-blur-sm"
             >
-              <div className="h-full rounded-lg bg-white p-4 transition-all duration-300 group-hover:shadow-md">
+              <div className="h-full rounded-lg border border-deep-ocean/5 bg-white/4 p-4 transition-all duration-300 group-hover:border-pharmacy-green/25 group-hover:shadow-[0_16px_34px_-24px_rgba(168,85,247,0.35)]">
                 <div className="text-sm font-medium text-deep-ocean/80">
                   {certificate.certificateName?.[language] || certificate.certificateName?.tr}
                 </div>

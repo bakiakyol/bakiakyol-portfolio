@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-deep-ocean/10 bg-clinical-white/95 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-deep-ocean/10 bg-clinical-white/80 shadow-[0_10px_40px_-28px_rgba(168,85,247,0.3)] backdrop-blur-xl">
         <nav
           aria-label="Ana navigasyon"
           className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6"
@@ -73,7 +73,7 @@ export default function Navbar() {
           </button>
 
           <div className="flex items-center gap-4">
-            <span className="text-sm font-semibold tracking-[0.1em] text-pharmacy-green">
+            <span className="text-sm font-semibold tracking-widest text-pharmacy-green drop-shadow-[0_0_12px_rgba(168,85,247,0.4)]">
               Baki Akyol
             </span>
 
@@ -97,7 +97,7 @@ export default function Navbar() {
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
-                className="absolute top-full right-0 mt-0 w-10 overflow-hidden rounded-md border border-pharmacy-green/20 bg-white shadow-lg z-50"
+                className="absolute top-full right-0 z-50 mt-0 w-10 overflow-hidden rounded-md border border-pharmacy-green/20 bg-[#0d0f13] shadow-[0_16px_40px_-24px_rgba(0,0,0,0.85)]"
               >
                 <button
                   onClick={() => setLanguage('tr')}
@@ -127,7 +127,7 @@ export default function Navbar() {
         />
       )}
       <div
-        className={`fixed left-0 right-0 top-16 z-40 bg-clinical-white border-b border-deep-ocean/10 transform transition-all duration-300 ease-out md:hidden ${
+        className={`fixed left-0 right-0 top-16 z-40 border-b border-deep-ocean/10 bg-clinical-white/95 backdrop-blur-xl transform transition-all duration-300 ease-out md:hidden ${
           isMenuOpen
             ? "translate-y-0 opacity-100"
             : "-translate-y-full opacity-0 pointer-events-none"

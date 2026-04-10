@@ -2,8 +2,8 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  --background: #fbfcfe;
-  --foreground: #0f172a;
+  --background: #050505;
+  --foreground: #f5f7fa;
 }
 
 @theme inline {
@@ -22,6 +22,14 @@
     @apply bg-clinical-white text-deep-ocean antialiased;
     font-family: var(--font-geist-sans), sans-serif;
     line-height: 1.65;
+    background-image:
+      radial-gradient(circle at top, rgb(168 85 247 / 0.18), transparent 0 28rem),
+      radial-gradient(circle at bottom right, rgb(255 255 255 / 0.05), transparent 0 22rem);
+  }
+
+  ::selection {
+    background: rgb(168 85 247 / 0.35);
+    color: #f5f7fa;
   }
 
   h1,

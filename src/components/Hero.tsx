@@ -72,7 +72,7 @@ export default function Hero() {
   return (
     <motion.section
       id="hakkimda"
-      className="relative overflow-hidden rounded-3xl border border-deep-ocean/10 bg-gradient-to-br from-clinical-white via-white to-deep-ocean/5 px-6 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20"
+      className="relative overflow-hidden rounded-3xl border border-deep-ocean/10 bg-linear-to-br from-[#050505] via-[#0c0d11] to-pharmacy-green/10 px-6 py-12 shadow-[0_24px_80px_-40px_rgba(168,85,247,0.3)] sm:px-8 sm:py-16 md:px-10 md:py-20"
       variants={containerVariants}
       initial="hidden"
       animate="show"
@@ -92,7 +92,7 @@ export default function Hero() {
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.65, ease: "easeOut" }}
-          className="z-20 w-full md:col-span-7 md:pr-8 flex flex-col items-center md:items-start text-center md:text-left order-last md:order-none"
+          className="z-20 w-full md:col-span-7 md:pr-8 flex flex-col items-center md:items-start text-center md:text-left order-last md:order-0"
         >
           {loading ? (
             <div className="space-y-4">
@@ -192,9 +192,9 @@ export default function Hero() {
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
-          className="z-10 w-full md:col-span-5 md:-ml-10 md:pt-24 flex justify-center md:justify-end order-first md:order-none"
+          className="z-10 w-full md:col-span-5 md:-ml-10 md:pt-24 flex justify-center md:justify-end order-first md:order-0"
         >
-          <div className="w-full max-w-48 sm:max-w-xs md:max-w-xs lg:max-w-sm overflow-hidden rounded-[2rem] border border-pharmacy-green/45 bg-white/90 shadow-[0_16px_40px_-34px_rgba(15,23,42,0.4)] backdrop-blur-sm">
+          <div className="w-full max-w-48 sm:max-w-xs md:max-w-xs lg:max-w-sm overflow-hidden rounded-4xl border border-pharmacy-green/30 bg-[#0f1014]/85 shadow-[0_24px_60px_-32px_rgba(168,85,247,0.35)] backdrop-blur-md">
             <div className="aspect-square w-full">
               <Image
                 src={profileImage}

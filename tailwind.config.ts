@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "pharmacy-green": "#10b981",
-        "clinical-white": "#FBFCFE",
-        "deep-ocean": "#0F172A",
+        "pharmacy-green": "#A855F7", // OLED black tema için mor accent renk
+        "clinical-white": "#050505", // Ana arka plan
+        "deep-ocean": "#F5F7FA", // Ana yazı rengi
       },
     },
   },

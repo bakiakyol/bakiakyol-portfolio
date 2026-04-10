@@ -41,7 +41,7 @@ export default function Projects() {
   const getAreaDominantColor = (imageUrl: string): Promise<string> => {
     return new Promise((resolve) => {
       if (typeof window === "undefined") {
-        resolve("#f8fafc");
+        resolve("#0f1014");
         return;
       }
 
@@ -56,7 +56,7 @@ export default function Projects() {
           const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
           if (!ctx) {
-            resolve("#f8fafc");
+            resolve("#0f1014");
             return;
           }
 
@@ -66,7 +66,7 @@ export default function Projects() {
 
           const { data } = ctx.getImageData(0, 0, sampleSize, sampleSize);
           const colorCounts = new Map<string, number>();
-          let topColor = "#f8fafc";
+          let topColor = "#0f1014";
           let topCount = 0;
 
           for (let i = 0; i < data.length; i += 4) {
@@ -89,11 +89,11 @@ export default function Projects() {
 
           resolve(topColor);
         } catch {
-          resolve("#f8fafc");
+          resolve("#0f1014");
         }
       };
 
-      img.onerror = () => resolve("#f8fafc");
+      img.onerror = () => resolve("#0f1014");
       img.src = imageUrl;
     });
   };
@@ -157,12 +157,12 @@ export default function Projects() {
                 delay: index * 0.08,
                 ease: "easeOut",
               }}
-              className="rounded-2xl border border-deep-ocean/10 bg-white p-6 shadow-sm"
+              className="rounded-2xl border border-deep-ocean/10 bg-white/5 p-6 shadow-[0_16px_40px_-30px_rgba(0,0,0,0.75)] backdrop-blur-sm"
             >
               <div
-                className="mb-5 flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-xl border border-deep-ocean/10 bg-clinical-white"
+                className="mb-5 flex aspect-16/10 w-full items-center justify-center overflow-hidden rounded-xl border border-deep-ocean/10 bg-[#0a0b0e]"
                 style={{
-                  backgroundColor: project.dominantColor ?? "#f8fafc",
+                  backgroundColor: project.dominantColor ?? "#0f1014",
                 }}
               >
                 {project.image?.asset?.url ? (
