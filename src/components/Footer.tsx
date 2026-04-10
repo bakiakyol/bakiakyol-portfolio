@@ -1,7 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { Linkedin, Instagram, Mail } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+
+const translations = {
+  contact: { tr: "İletişim", en: "Contact" },
+  rights: { tr: "Tüm hakları saklıdır.", en: "All rights reserved." },
+  joke: { tr: "Yan etkisi yoktur...", en: "No side effects..." },
+  madeBy: { tr: "geliştirici", en: "made by" }
+};
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations;
+
   return (
     <footer className="border-t border-deep-ocean/10 bg-clinical-white/50 py-16">
       <div className="mx-auto w-full max-w-6xl px-6">
@@ -9,7 +22,7 @@ export default function Footer() {
           {/* Contact Section */}
           <div className="text-center space-y-6">
             <h3 className="text-lg font-semibold text-pharmacy-green">
-              İletişim
+              {t.contact[language]}
             </h3>
             <div className="flex justify-center gap-6">
               <a
@@ -44,13 +57,13 @@ export default function Footer() {
           <div className="border-t border-deep-ocean/10 pt-8 w-full">
             <div className="text-center space-y-2">
               <p className="text-xs text-deep-ocean/50">
-                © 2026 Baki Akyol. Tüm hakları saklıdır.
+                © 2026 Baki Akyol. {t.rights[language]}
               </p>
               <p className="text-xs text-deep-ocean/40 italic">
-                Yan etkisi yoktur...
+                {t.joke[language]}
               </p>
               <p className="text-xs text-deep-ocean/30 mt-4">
-                made by{" "}
+                {t.madeBy[language]}{" "}
                 <a
                   href="https://eftekin.com"
                   target="_blank"

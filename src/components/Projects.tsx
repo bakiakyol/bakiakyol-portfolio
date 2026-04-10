@@ -6,11 +6,14 @@ import { motion } from "framer-motion";
 import { client } from "@/sanity/lib/client";
 import { projectsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
+import { useLanguage } from "@/context/LanguageContext";
+
+type LocalizedString = { tr: string; en: string };
 
 type ProjectItem = {
   _id: string;
-  projectName: string;
-  description: string;
+  projectName: LocalizedString;
+  description: LocalizedString;
   image?: {
     asset: {
       _id: string;
@@ -22,7 +25,16 @@ type ProjectItem = {
   dominantColor?: string;
 };
 
+const labels = {
+  title: { tr: "Projeler ve Katılımlar", en: "Projects and Participations" },
+  subtitle: { tr: "Sağlık sektöründe değer yaratan akademik ve sosyal projeler", en: "Academic and social projects creating value in the healthcare sector" },
+  loading: { tr: "Yükleniyor...", en: "Loading..." },
+  empty: { tr: "Henüz proje eklenmemiştir.", en: "No projects added yet." },
+  imagePlaceholder: { tr: "Proje Görseli", en: "Project Image" }
+};
+
 export default function Projects() {
+  const { language } = useLanguage();
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -122,17 +134,17 @@ export default function Projects() {
   return (
     <section id="projeler" className="w-full py-24">
       <div className="max-w-4xl">
-        <h2 className="font-bold text-deep-ocean">Projeler ve Katılımlar</h2>
+        <h2 className="font-bold text-deep-ocean">{labels.title[language]}</h2>
         <p className="mt-3 text-deep-ocean/55">
-          Sağlık sektöründe değer yaratan akademik ve sosyal projeler 
+          {labels.subtitle[language]}
         </p>
       </div>
 
       <div className="mt-10 grid gap-7 md:mt-12 md:grid-cols-2">
         {loading ? (
-          <p className="text-deep-ocean/60">Yükleniyor...</p>
+          <p className="text-deep-ocean/60">{labels.loading[language]}</p>
         ) : projects.length === 0 ? (
-          <p className="text-deep-ocean/60">Henüz proje eklenmemiştir.</p>
+          <p className="text-deep-ocean/60">{labels.empty[language]}</p>
         ) : (
           projects.map((project, index) => (
             <motion.article
@@ -156,22 +168,22 @@ export default function Projects() {
                 {project.image?.asset?.url ? (
                   <Image
                     src={urlFor(project.image).url()}
-                    alt={project.projectName}
+                    alt={project.projectName?.[language] || "Proje Görseli"}
                     width={400}
                     height={250}
                     className="h-full w-full object-contain"
                   />
                 ) : (
                   <span className="text-xs tracking-[0.08em] text-deep-ocean/40 uppercase">
-                    Proje Görseli
+                    {labels.imagePlaceholder[language]}
                   </span>
                 )}
               </div>
               <h3 className="text-2xl font-semibold text-deep-ocean">
-                {project.projectName}
+                {project.projectName?.[language] || project.projectName?.tr}
               </h3>
               <p className="mt-3 text-sm leading-6 text-deep-ocean/72">
-                {project.description}
+                {project.description?.[language] || project.description?.tr}
               </p>
             </motion.article>
           ))

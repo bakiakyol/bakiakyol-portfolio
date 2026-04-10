@@ -14,20 +14,29 @@ export default defineType({
     {
       name: "title",
       title: "Unvan",
-      type: "string",
-      validation: (Rule) => Rule.required(),
+      type: "object", // Eskiden string idi, şimdi obje oldu
+      fields: [
+        { name: "tr", title: "Türkçe", type: "string", validation: (Rule) => Rule.required() },
+        { name: "en", title: "İngilizce", type: "string", validation: (Rule) => Rule.required() }
+      ],
     },
     {
       name: "biography",
       title: "Biyografi",
-      type: "text",
-      validation: (Rule) => Rule.required(),
+      type: "object", // Eskiden text idi, şimdi obje oldu
+      fields: [
+        { name: "tr", title: "Türkçe", type: "text", validation: (Rule) => Rule.required() },
+        { name: "en", title: "İngilizce", type: "text", validation: (Rule) => Rule.required() }
+      ],
     },
     {
       name: "university",
       title: "Üniversite",
-      type: "string",
-      validation: (Rule) => Rule.required(),
+      type: "object", // Eskiden string idi, şimdi obje oldu
+      fields: [
+        { name: "tr", title: "Türkçe", type: "string", validation: (Rule) => Rule.required() },
+        { name: "en", title: "İngilizce", type: "string", validation: (Rule) => Rule.required() }
+      ],
     },
     {
       name: "graduationYear",
@@ -38,9 +47,11 @@ export default defineType({
     {
       name: "interests",
       title: "İlgi Alanları",
-      type: "array",
-      of: [{ type: "string" }],
-      validation: (Rule) => Rule.required().min(1),
+      type: "object", // Eskiden direkt array idi, şimdi obje içinde iki ayrı array oldu
+      fields: [
+        { name: "tr", title: "Türkçe", type: "array", of: [{ type: "string" }] },
+        { name: "en", title: "İngilizce", type: "array", of: [{ type: "string" }] }
+      ],
     },
   ],
 });

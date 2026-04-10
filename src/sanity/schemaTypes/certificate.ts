@@ -8,13 +8,16 @@ export default defineType({
     {
       name: 'certificateName',
       title: 'Sertifika Adı',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
+      type: 'object',
+      fields: [
+        { name: 'tr', title: 'Türkçe', type: 'string', validation: (Rule) => Rule.required() },
+        { name: 'en', title: 'İngilizce', type: 'string', validation: (Rule) => Rule.required() }
+      ],
     },
   ],
   preview: {
     select: {
-      title: 'certificateName',
+      title: 'certificateName.tr',
     },
   },
 });

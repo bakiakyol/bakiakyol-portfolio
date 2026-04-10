@@ -8,14 +8,20 @@ import { client } from "@/sanity/lib/client";
 import { aboutQuery } from "@/sanity/lib/queries";
 import profileImage from "../../public/profile.jpg";
 
+import { useLanguage } from "@/context/LanguageContext";
+
+// 1. VERİ TİPLERİNİ GÜNCELLEDİK: Artık çevirili alanlarımız obje ({tr, en}) formatında
+type LocalizedString = { tr: string; en: string };
+type LocalizedArray = { tr: string[]; en: string[] };
+
 type AboutData = {
   _id: string;
-  name: string;
-  title: string;
-  biography: string;
-  university: string;
-  graduationYear: number;
-  interests: string[];
+  name: string; // İsim sabit
+  title: LocalizedString;
+  biography: LocalizedString;
+  university: LocalizedString;
+  graduationYear: number; // Yıl sabit
+  interests: LocalizedArray;
 };
 
 const containerVariants = {
@@ -34,7 +40,17 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
+const heroLabels = {
+  university: { tr: "Üniversite", en: "University" },
+  gradYear: { tr: "Mezuniyet Yılı", en: "Graduation Year" },
+  interests: { tr: "İlgi Alanları", en: "Interests" },
+  loadingError: { tr: "Veriler yüklenemedi", en: "Failed to load data" },
+  aboutMe: { tr: "Hakkımda", en: "About Me" }
+};
+
 export default function Hero() {
+  const { language } = useLanguage();
+  
   const [about, setAbout] = useState<AboutData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -61,7 +77,6 @@ export default function Hero() {
       initial="hidden"
       animate="show"
     >
-      {/* Decorative circles - hidden on very small screens to prevent overflow */}
       <motion.div
         variants={fadeUp}
         transition={{ duration: 0.7, ease: "easeOut" }}
@@ -74,7 +89,6 @@ export default function Hero() {
       />
 
       <div className="relative flex flex-col md:grid md:grid-cols-12 items-start gap-10 md:gap-12">
-        {/* Text Content */}
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.65, ease: "easeOut" }}
@@ -90,27 +104,27 @@ export default function Hero() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-deep-ocean">
                 {about.name}
               </h1>
+              {/* 2. SANITY VERİLERİNİ DİLE GÖRE ÇEKİYORUZ: about.title yerine about.title?.[language] */}
               <h2 className="mt-3 sm:mt-4 md:mt-5 text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-deep-ocean/60">
-                {about.title}
+                {about.title?.[language] || about.title?.tr}
               </h2>
               <p className="mt-6 sm:mt-7 md:mt-8 text-sm sm:text-base leading-7 text-deep-ocean/70 max-w-2xl">
-                {about.biography}
+                {about.biography?.[language] || about.biography?.tr}
               </p>
 
-              {/* Education & Interests Info */}
               <div className="mt-6 sm:mt-7 space-y-4 w-full max-w-2xl">
                 <div className="flex flex-col sm:flex-row sm:gap-8 gap-4">
                   <div className="flex-1">
                     <p className="text-xs font-semibold uppercase tracking-wider text-pharmacy-green/70">
-                      Üniversite
+                      {heroLabels.university[language]}
                     </p>
                     <p className="mt-1.5 text-sm sm:text-base text-deep-ocean/80">
-                      {about.university}
+                      {about.university?.[language] || about.university?.tr}
                     </p>
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-semibold uppercase tracking-wider text-pharmacy-green/70">
-                      Mezuniyet Yılı
+                      {heroLabels.gradYear[language]}
                     </p>
                     <p className="mt-1.5 text-sm sm:text-base text-deep-ocean/80">
                       {about.graduationYear}
@@ -119,10 +133,11 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-pharmacy-green/70">
-                    İlgi Alanları
+                    {heroLabels.interests[language]}
                   </p>
                   <div className="mt-2.5 flex flex-wrap gap-1.5 sm:gap-2 justify-center md:justify-start">
-                    {about.interests.map((interest, index) => (
+                    {/* 3. HATANIN ÇÖZÜLDÜĞÜ YER: about.interests.map yerine about.interests?.[language]?.map */}
+                    {(about.interests?.[language] || about.interests?.tr || []).map((interest, index) => (
                       <span
                         key={index}
                         className="px-2.5 py-1 text-xs rounded-full bg-pharmacy-green/10 text-deep-ocean/70 border border-pharmacy-green/20 whitespace-nowrap"
@@ -165,16 +180,15 @@ export default function Hero() {
           ) : (
             <>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-deep-ocean">
-                Hakkımda
+                {heroLabels.aboutMe[language]}
               </h1>
               <h2 className="mt-3 sm:mt-4 md:mt-5 text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-deep-ocean/60">
-                Veriler yüklenemedi
+                {heroLabels.loadingError[language]}
               </h2>
             </>
           )}
         </motion.div>
 
-        {/* Image */}
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}

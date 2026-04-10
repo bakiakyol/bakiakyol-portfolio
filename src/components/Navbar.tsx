@@ -8,10 +8,10 @@ import { smoothScrollTo } from "./SmoothScroll";
 import { useLanguage } from "@/context/LanguageContext";
 
 const navItems = [
-  { label: "Hakkımda", href: "#hakkimda" },
-  { label: "Deneyimler", href: "#deneyimler" },
-  { label: "Projeler", href: "#projeler" },
-  { label: "Sertifikalar", href: "#sertifikalar" },
+  { href: "#hakkimda", tr: "Hakkımda", en: "About" },
+  { href: "#deneyimler", tr: "Deneyimler", en: "Experience" },
+  { href: "#projeler", tr: "Projeler", en: "Projects" },
+  { href: "#sertifikalar", tr: "Sertifikalar", en: "Certificates" },
 ];
 
 export default function Navbar() {
@@ -52,7 +52,7 @@ export default function Navbar() {
                   href={item.href}
                   className="-mx-2 rounded-md px-2 py-2 transition-colors hover:text-deep-ocean focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
                 >
-                  {item.label}
+                  {item[language]}
                 </Link>
               </li>
             ))}
@@ -134,6 +134,7 @@ export default function Navbar() {
         }`}
       >
         <ul className="flex flex-col space-y-0">
+          
           {navItems.map((item) => (
             <li
               key={item.href}
@@ -144,7 +145,7 @@ export default function Navbar() {
                 onClick={(e) => handleLinkClick(e, item.href)}
                 className="block px-6 py-4 text-center text-lg font-medium text-deep-ocean/70 transition-colors active:bg-deep-ocean/5 hover:text-deep-ocean hover:bg-deep-ocean/5"
               >
-                {item.label}
+                {item[language]}
               </Link>
             </li>
           ))}
