@@ -8,7 +8,7 @@ const translations = {
   contact: { tr: "İletişim", en: "Contact" },
   rights: { tr: "Tüm hakları saklıdır.", en: "All rights reserved." },
   joke: { tr: "Yan etkisi yoktur...", en: "No side effects..." },
-  madeBy: { tr: "geliştirici", en: "made by" }
+  madeBy: { tr: "made by", en: "made by" }
 };
 
 export default function Footer() {
