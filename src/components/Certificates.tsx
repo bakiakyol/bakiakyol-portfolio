@@ -14,7 +14,8 @@ type CertificateItem = {
 };
 
 const labels = {
-  title: { tr: "Sertifikalar", en: "Certificates" },
+  // Başlık güncellendi:
+  title: { tr: "Sertifikalar ve Katılımlar", en: "Certificates and Participations" },
   subtitle: { 
     tr: "Mesleki yetkinlikleri ve teknik donanımı destekleyen nitelikli eğitimler", 
     en: "Qualified trainings supporting professional competencies and technical equipment" 

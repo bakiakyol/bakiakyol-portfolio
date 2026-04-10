@@ -23,21 +23,11 @@ export default defineType({
         { name: 'en', title: 'İngilizce', type: 'text', validation: (Rule) => Rule.required() }
       ],
     },
-    {
-      name: 'image',
-      title: 'Görsel',
-      type: 'image', // Görselin dile göre değişmesine gerek yok, sabit kalıyor
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => Rule.required(),
-    },
+    // Görsel (image) alanı tamamen silindi!
   ],
-  // Önizlemede Türkçe proje adını çekmesi için .tr eklendi
   preview: {
     select: {
       title: 'projectName.tr',
-      media: 'image',
     },
   },
 });
