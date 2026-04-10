@@ -41,11 +41,11 @@ const fadeUp = {
 };
 
 const heroLabels = {
-  university: { tr: "Üniversite", en: "University" },
-  gradYear: { tr: "Mezuniyet Yılı", en: "Graduation Year" },
-  interests: { tr: "İlgi Alanları", en: "Interests" },
-  loadingError: { tr: "Veriler yüklenemedi", en: "Failed to load data" },
-  aboutMe: { tr: "Hakkımda", en: "About Me" }
+  university: { tr: "ÜNİVERSİTE", en: "UNIVERSITY" },
+  gradYear: { tr: "MEZUNİYET YILI", en: "GRADUATION YEAR" },
+  interests: { tr: "İLGİ ALANLARI", en: "INTERESTS" },
+  loadingError: { tr: "VERİLER YÜKLENEMEDİ", en: "FAILED TO LOAD DATA" },
+  aboutMe: { tr: "HAKKIMDA", en: "ABOUT ME" }
 };
 
 export default function Hero() {
