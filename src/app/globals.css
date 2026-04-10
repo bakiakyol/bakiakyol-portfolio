@@ -64,6 +64,21 @@
     @apply text-sm text-deep-ocean/60;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* --- ÖZEL SCROLLBAR TASARIMI --- */
 ::-webkit-scrollbar {
   width: 8px; /* İncecik ve zarif */

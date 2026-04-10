@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from "react";
 
-type Language = 'tr' | 'en';
+type Language = "tr" | "en";
 
 interface LanguageContextType {
   language: Language;
@@ -12,25 +12,27 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('tr');
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined") {
+    return "tr";
+  }
 
-  useEffect(() => {
-    const saved = localStorage.getItem('language') as Language;
-    if (saved && (saved === 'tr' || saved === 'en')) {
-      setLanguage(saved);
-    }
-  }, []);
+  const saved = localStorage.getItem("language");
+  return saved === "tr" || saved === "en" ? saved : "tr";
+};
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
 
   const toggleLanguage = () => {
-    const newLang = language === 'tr' ? 'en' : 'tr';
+    const newLang = language === "tr" ? "en" : "tr";
     setLanguage(newLang);
-    localStorage.setItem('language', newLang);
+    localStorage.setItem("language", newLang);
   };
 
   const setLang = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem('language', lang);
+    localStorage.setItem("language", lang);
   };
 
   return (
@@ -43,7 +45,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 }

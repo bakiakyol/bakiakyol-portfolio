@@ -20,7 +20,7 @@ export default function Navbar() {
   const { language, setLanguage } = useLanguage();
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
   };
 
   const closeMenu = () => {
@@ -43,7 +43,6 @@ export default function Navbar() {
           aria-label="Ana navigasyon"
           className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6"
         >
-          {/* Desktop Navigation */}
           <ul className="hidden flex-wrap items-center gap-5 text-sm text-deep-ocean/70 md:flex md:gap-7">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -58,17 +57,16 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Mobile Hamburger Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-md text-deep-ocean/70 hover:text-deep-ocean transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
+            className="md:hidden flex h-10 w-10 items-center justify-center rounded-md text-deep-ocean/70 transition-colors hover:text-deep-ocean focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
             aria-label="Menüyü aç"
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6" strokeWidth={2.5} />
+              <X className="h-6 w-6" strokeWidth={2.5} />
             ) : (
-              <Menu className="w-6 h-6" strokeWidth={2.5} />
+              <Menu className="h-6 w-6" strokeWidth={2.5} />
             )}
           </button>
 
@@ -78,26 +76,24 @@ export default function Navbar() {
             </span>
 
             <div className="relative">
-              {/* Language Toggle Button */}
               <button
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex h-8 w-20 items-center justify-center gap-2 rounded-md border border-pharmacy-green/20 text-xs font-semibold text-deep-ocean/70 hover:text-deep-ocean hover:border-pharmacy-green/40 hover:scale-105 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
+                onClick={() => setIsDropdownOpen((prev) => !prev)}
+                className="flex h-8 w-20 items-center justify-center gap-2 rounded-md border border-pharmacy-green/20 text-xs font-semibold text-deep-ocean/70 transition-[color,border-color,transform] duration-150 hover:scale-[1.02] hover:border-pharmacy-green/40 hover:text-deep-ocean focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
                 aria-label="Dil değiştir"
               >
-                <span>{language === 'tr' ? '🇹🇷' : '🇺🇸'}</span>
+                <span>{language === "tr" ? "🇹🇷" : "🇺🇸"}</span>
                 <span>{language.toUpperCase()}</span>
               </button>
 
-              {/* Dropdown Menu */}
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {isDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    initial={{ opacity: 0, y: -6, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 380, damping: 28, mass: 0.7 }}
                     style={{ transformOrigin: "top right" }}
                     onMouseEnter={() => setIsDropdownOpen(true)}
                     onMouseLeave={() => setIsDropdownOpen(false)}
@@ -105,19 +101,19 @@ export default function Navbar() {
                   >
                     <button
                       onClick={() => {
-                        setLanguage('tr');
+                        setLanguage("tr");
                         setIsDropdownOpen(false);
                       }}
-                      className="flex w-full items-center justify-center gap-2 py-2.5 text-xs font-medium hover:bg-pharmacy-green/10 transition-colors"
+                      className="flex w-full items-center justify-center gap-2 py-2.5 text-xs font-medium transition-colors hover:bg-pharmacy-green/10"
                     >
                       <span>🇹🇷</span> TR
                     </button>
                     <button
                       onClick={() => {
-                        setLanguage('en');
+                        setLanguage("en");
                         setIsDropdownOpen(false);
                       }}
-                      className="flex w-full items-center justify-center gap-2 py-2.5 text-xs font-medium hover:bg-pharmacy-green/10 transition-colors border-t border-deep-ocean/5"
+                      className="flex w-full items-center justify-center gap-2 border-t border-deep-ocean/5 py-2.5 text-xs font-medium transition-colors hover:bg-pharmacy-green/10"
                     >
                       <span>🇺🇸</span> EN
                     </button>
@@ -129,8 +125,7 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* Mobile Menu Drawer */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isMenuOpen && (
           <>
             <motion.div
@@ -145,7 +140,7 @@ export default function Navbar() {
               initial={{ y: "-100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "-100%", opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 260, damping: 26, mass: 0.8 }}
               className="fixed left-0 right-0 top-16 z-40 border-b border-deep-ocean/10 bg-clinical-white/95 backdrop-blur-xl md:hidden"
             >
               <ul className="flex flex-col">
@@ -157,7 +152,7 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item.href)}
-                      className="block px-6 py-4 text-center text-lg font-medium text-deep-ocean/70 transition-colors active:bg-deep-ocean/5 hover:text-deep-ocean hover:bg-deep-ocean/5"
+                      className="block px-6 py-4 text-center text-lg font-medium text-deep-ocean/70 transition-colors active:bg-deep-ocean/5 hover:bg-deep-ocean/5 hover:text-deep-ocean"
                     >
                       {item[language as keyof typeof item]}
                     </Link>
@@ -169,7 +164,6 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Spacer for fixed navbar */}
       <div className="h-16" />
     </>
   );
