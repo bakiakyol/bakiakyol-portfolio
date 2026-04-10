@@ -16,10 +16,10 @@ export interface About {
 export interface Experience {
   _id: string;
   _type: "experience";
-  organization: string;
-  role: string;
-  dateRange: string;
-  tasks: string[];
+  organization: { tr: string; en: string };
+  role: { tr: string; en: string };
+  dateRange: { tr: string; en: string };
+  tasks: { tr: string[]; en: string[] };
 }
 
 // Project Schema Type

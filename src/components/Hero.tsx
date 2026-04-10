@@ -107,7 +107,7 @@ export default function Hero() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-pharmacy-green/80">
               {heroLabels.university[language]}
             </p>
-            <p className="mt-1 text-sm text-deep-ocean/85">
+            <p className="mt-1 text-sm text-deep-ocean/85 text-center md:text-left">
               {about.university?.[language] || about.university?.tr}
             </p>
           </div>
@@ -115,20 +115,20 @@ export default function Hero() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-pharmacy-green/80">
               {heroLabels.gradYear[language]}
             </p>
-            <p className="mt-1 text-sm text-deep-ocean/85">
+            <p className="mt-1 text-sm text-deep-ocean/85 text-center md:text-left">
               {about.graduationYear}
             </p>
           </div>
         </div>
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-widest text-pharmacy-green/80">
+          <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] sm:tracking-widest text-pharmacy-green/80">
             {heroLabels.interests[language]}
           </p>
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="mt-2 flex flex-wrap gap-2 justify-center md:justify-start">
             {(about.interests?.[language] || about.interests?.tr || []).map((interest, index) => (
               <span
                 key={index}
-                className="px-3 py-1 text-xs rounded-full bg-pharmacy-green/10 text-deep-ocean/80 border border-pharmacy-green/20 whitespace-nowrap"
+                className="max-w-full px-3 py-1 text-center text-xs rounded-full border border-pharmacy-green/20 bg-pharmacy-green/10 text-deep-ocean/80 wrap-break-word whitespace-normal"
               >
                 {interest}
               </span>
@@ -142,7 +142,8 @@ export default function Hero() {
   return (
     <motion.section
       id="hakkimda"
-      className="relative flex min-h-[82vh] max-h-212.5 w-full flex-col justify-center overflow-hidden rounded-3xl border border-deep-ocean/10 bg-linear-to-br from-[#050505] via-[#0c0d11] to-pharmacy-green/10 px-6 py-8 shadow-[0_24px_80px_-40px_rgba(168,85,247,0.3)] sm:px-8 md:px-10 lg:px-14 mt-2 mb-4"
+      /* DEĞİŞİKLİK: pt değerleri azaltıldı (pt-12, pt-20, pt-24). min-h kaldırıldı veya düşürüldü. */
+      className="relative flex min-h-[70vh] w-full flex-col items-center justify-start overflow-hidden rounded-3xl border border-deep-ocean/10 bg-linear-to-br from-[#050505] via-[#0c0d11] to-pharmacy-green/10 px-6 pt-10 pb-10 sm:pt-16 sm:pb-12 md:px-10 md:pt-20 lg:px-14 lg:pt-24 mt-2 mb-4 shadow-[0_24px_80px_-40px_rgba(168,85,247,0.3)]"
       variants={containerVariants}
       initial="hidden"
       animate="show"
@@ -158,13 +159,12 @@ export default function Hero() {
         className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-deep-ocean/5 hidden sm:block"
       />
 
-      {/* md:items-start eklenerek metin ve fotoğrafın üstten hizalanması sağlandı */}
-      <div className="relative w-full flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-8 lg:gap-16">
+      <div className="relative w-full flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-8 lg:gap-16">
         
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.65, ease: "easeOut" }}
-          className="z-20 w-full md:flex-1 flex flex-col items-center md:items-start text-center md:text-left order-last md:order-first"
+          className="z-20 w-full md:flex-1 flex flex-col items-center md:items-start text-center md:text-left order-last md:order-first space-y-5 sm:space-y-6"
         >
           {loading ? (
             <div className="space-y-4">
@@ -173,71 +173,46 @@ export default function Hero() {
             </div>
           ) : about ? (
             <>
-              {/* h1 başlığı için üst boşluk temizlendi, fotoğraf ile hizalandı */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-deep-ocean tracking-tight">
                 {about.name}
               </h1>
               
-              <h2 className="mt-3 md:mt-4 text-lg sm:text-xl lg:text-2xl font-medium text-deep-ocean/60">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-medium text-deep-ocean/60">
                 <Typewriter 
                   text={about.title?.[language] || about.title?.tr || ""} 
                   delay={400} 
                 />
               </h2>
               
-              <p className="mt-5 md:mt-6 text-sm sm:text-base lg:text-lg leading-relaxed text-deep-ocean/70 max-w-xl">
+              <p className="text-base sm:text-lg leading-relaxed text-deep-ocean/70 max-w-xl text-center md:text-left">
                 {about.biography?.[language] || about.biography?.tr}
               </p>
 
-              <InfoBlock className="mt-8 text-left md:hidden w-full max-w-xl" />
+              <InfoBlock className="md:hidden w-full max-w-xl text-center" />
 
-              <div className="mt-8 lg:mt-10 flex gap-4 justify-center md:justify-start">
-                <a
-                  href="https://linkedin.com/in/bakiakyol"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 hover:scale-110 transition-all duration-300"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-5.5 h-5.5 text-deep-ocean hover:text-pharmacy-green transition-colors" />
+              <div className="flex gap-4 justify-center md:justify-start">
+                <a href="https://linkedin.com/in/bakiakyol" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 hover:scale-110 transition-all duration-300">
+                  <Linkedin className="w-5.5 h-5.5 text-deep-ocean" />
                 </a>
-                <a
-                  href="https://instagram.com/akyolbaki0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 hover:scale-110 transition-all duration-300"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-5.5 h-5.5 text-deep-ocean hover:text-pharmacy-green transition-colors" />
+                <a href="https://instagram.com/akyolbaki0" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 hover:scale-110 transition-all duration-300">
+                  <Instagram className="w-5.5 h-5.5 text-deep-ocean" />
                 </a>
-                <a
-                  href="mailto:info@bakiakyol.com"
-                  className="p-3.5 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 hover:scale-110 transition-all duration-300"
-                  aria-label="Email"
-                >
-                  <Mail className="w-5.5 h-5.5 text-deep-ocean hover:text-pharmacy-green transition-colors" />
+                <a href="mailto:info@bakiakyol.com" className="p-3 rounded-full bg-deep-ocean/5 hover:bg-pharmacy-green/20 hover:scale-110 transition-all duration-300">
+                  <Mail className="w-5.5 h-5.5 text-deep-ocean" />
                 </a>
               </div>
             </>
           ) : (
-            <>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-deep-ocean">
-                {heroLabels.aboutMe[language]}
-              </h1>
-              <h2 className="mt-4 text-xl lg:text-2xl font-medium text-deep-ocean/60">
-                {heroLabels.loadingError[language]}
-              </h2>
-            </>
+            <h1 className="text-4xl font-bold text-deep-ocean">{heroLabels.loadingError[language]}</h1>
           )}
         </motion.div>
 
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
-          /* justify-center yerine üstten hizalama için düzenleme yapıldı */
-          className="z-10 w-full md:w-[320px] lg:w-95 flex flex-col items-center md:items-end gap-6 lg:gap-8 order-first md:order-last"
+          className="z-10 w-full md:w-75 lg:w-95 flex flex-col items-center md:items-end gap-6 order-first md:order-last"
         >
-          <div className="w-full max-w-60 md:max-w-full overflow-hidden rounded-4xl border border-pharmacy-green/30 bg-[#0f1014]/85 shadow-[0_24px_60px_-32px_rgba(168,85,247,0.35)] backdrop-blur-md">
+          <div className="w-full max-w-56 md:max-w-full overflow-hidden rounded-3xl border border-pharmacy-green/30 bg-[#0f1014]/85 shadow-xl backdrop-blur-md">
             <div className="aspect-square w-full">
               <Image
                 src={profileImage}
@@ -246,15 +221,11 @@ export default function Hero() {
                 height={400}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 priority
-                placeholder="blur"
-                sizes="(max-width: 768px) 240px, 380px"
               />
             </div>
           </div>
-          
           <InfoBlock className="hidden md:flex w-full text-left" />
         </motion.div>
-
       </div>
     </motion.section>
   );
