@@ -48,6 +48,39 @@ const heroLabels = {
   aboutMe: { tr: "HAKKIMDA", en: "ABOUT ME" }
 };
 
+// --- DAKTİLO EFEKTİ (TYPEWRITER) BİLEŞENİ ---
+const Typewriter = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    setDisplayedText("");
+    let i = 0;
+    const timer = setTimeout(() => {
+      const interval = setInterval(() => {
+        setDisplayedText(text.substring(0, i + 1));
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, 50); // Harf harf yazılma hızı (ms)
+      return () => clearInterval(interval);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [text, delay]);
+
+  return (
+    <span className="inline-flex items-center min-h-[1.5em]">
+      {displayedText}
+      {/* Yanıp sönen yeşil imleç */}
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+        className="ml-1 inline-block h-[1.1em] w-0.75 bg-pharmacy-green"
+      />
+    </span>
+  );
+};
+// --------------------------------------------
+
 export default function Hero() {
   const { language } = useLanguage();
   
@@ -104,9 +137,12 @@ export default function Hero() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-deep-ocean">
                 {about.name}
               </h1>
-              {/* 2. SANITY VERİLERİNİ DİLE GÖRE ÇEKİYORUZ: about.title yerine about.title?.[language] */}
+              {/* 2. DAKTİLO EFEKTİ BURAYA EKLENDİ */}
               <h2 className="mt-3 sm:mt-4 md:mt-5 text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-deep-ocean/60">
-                {about.title?.[language] || about.title?.tr}
+                <Typewriter 
+                  text={about.title?.[language] || about.title?.tr || ""} 
+                  delay={400} 
+                />
               </h2>
               <p className="mt-6 sm:mt-7 md:mt-8 text-sm sm:text-base leading-7 text-deep-ocean/70 max-w-2xl">
                 {about.biography?.[language] || about.biography?.tr}
