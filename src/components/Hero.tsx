@@ -142,7 +142,6 @@ export default function Hero() {
   return (
     <motion.section
       id="hakkimda"
-      /* KUTUYU YUKARI ÇEKTİĞİMİZ KISIM: h-[82vh] ve mt-2 mb-4 olarak güncellendi */
       className="relative flex min-h-[82vh] max-h-212.5 w-full flex-col justify-center overflow-hidden rounded-3xl border border-deep-ocean/10 bg-linear-to-br from-[#050505] via-[#0c0d11] to-pharmacy-green/10 px-6 py-8 shadow-[0_24px_80px_-40px_rgba(168,85,247,0.3)] sm:px-8 md:px-10 lg:px-14 mt-2 mb-4"
       variants={containerVariants}
       initial="hidden"
@@ -159,7 +158,8 @@ export default function Hero() {
         className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-deep-ocean/5 hidden sm:block"
       />
 
-      <div className="relative w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8 lg:gap-16">
+      {/* md:items-start eklenerek metin ve fotoğrafın üstten hizalanması sağlandı */}
+      <div className="relative w-full flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-8 lg:gap-16">
         
         <motion.div
           variants={fadeUp}
@@ -173,6 +173,7 @@ export default function Hero() {
             </div>
           ) : about ? (
             <>
+              {/* h1 başlığı için üst boşluk temizlendi, fotoğraf ile hizalandı */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-deep-ocean tracking-tight">
                 {about.name}
               </h1>
@@ -233,7 +234,8 @@ export default function Hero() {
         <motion.div
           variants={fadeUp}
           transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
-          className="z-10 w-full md:w-[320px] lg:w-95 flex flex-col items-center md:items-end justify-center gap-6 lg:gap-8 order-first md:order-last"
+          /* justify-center yerine üstten hizalama için düzenleme yapıldı */
+          className="z-10 w-full md:w-[320px] lg:w-95 flex flex-col items-center md:items-end gap-6 lg:gap-8 order-first md:order-last"
         >
           <div className="w-full max-w-60 md:max-w-full overflow-hidden rounded-4xl border border-pharmacy-green/30 bg-[#0f1014]/85 shadow-[0_24px_60px_-32px_rgba(168,85,247,0.35)] backdrop-blur-md">
             <div className="aspect-square w-full">

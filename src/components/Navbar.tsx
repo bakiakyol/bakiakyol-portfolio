@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { smoothScrollTo } from "./SmoothScroll";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -43,16 +43,16 @@ export default function Navbar() {
           aria-label="Ana navigasyon"
           className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6"
         >
-          {/* DeskonClick={(e) => handleLinkClick(e, item.href)}
-                  top Navigation */}
+          {/* Desktop Navigation */}
           <ul className="hidden flex-wrap items-center gap-5 text-sm text-deep-ocean/70 md:flex md:gap-7">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
                   className="-mx-2 rounded-md px-2 py-2 transition-colors hover:text-deep-ocean focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
                 >
-                  {item[language]}
+                  {item[language as keyof typeof item]}
                 </Link>
               </li>
             ))}
@@ -77,80 +77,97 @@ export default function Navbar() {
               Baki Akyol
             </span>
 
-          <div className="relative">
-            {/* Language Toggle Button */}
-            <button
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
-              className="flex h-7 w-10 items-center justify-center rounded-md border border-pharmacy-green/20 text-xs font-medium text-deep-ocean/70 hover:text-deep-ocean hover:border-pharmacy-green/40 hover:scale-110 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
-              aria-label="Dil değiştir"
-            >
-              {language === 'tr' ? 'TR' : 'EN'}
-            </button>
-
-            {/* Dropdown Menu */}
-            {isDropdownOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+            <div className="relative">
+              {/* Language Toggle Button */}
+              <button
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
-                className="absolute top-full right-0 z-50 mt-0 w-10 overflow-hidden rounded-md border border-pharmacy-green/20 bg-[#0d0f13] shadow-[0_16px_40px_-24px_rgba(0,0,0,0.85)]"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex h-8 w-20 items-center justify-center gap-2 rounded-md border border-pharmacy-green/20 text-xs font-semibold text-deep-ocean/70 hover:text-deep-ocean hover:border-pharmacy-green/40 hover:scale-105 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pharmacy-green focus-visible:ring-offset-2"
+                aria-label="Dil değiştir"
               >
-                <button
-                  onClick={() => setLanguage('tr')}
-                  className="w-full py-2 text-center text-xs hover:bg-deep-ocean/5 transition-colors"
-                >
-                  TR
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className="w-full py-2 text-center text-xs hover:bg-deep-ocean/5 transition-colors"
-                >
-                  EN
-                </button>
-              </motion.div>
-            )}
-          </div>
+                <span>{language === 'tr' ? '🇹🇷' : '🇺🇸'}</span>
+                <span>{language.toUpperCase()}</span>
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    style={{ transformOrigin: "top right" }}
+                    onMouseEnter={() => setIsDropdownOpen(true)}
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                    className="absolute top-full right-0 z-50 mt-2 w-20 overflow-hidden rounded-md border border-pharmacy-green/20 bg-clinical-white/95 shadow-xl backdrop-blur-md dark:bg-[#0d0f13]"
+                  >
+                    <button
+                      onClick={() => {
+                        setLanguage('tr');
+                        setIsDropdownOpen(false);
+                      }}
+                      className="flex w-full items-center justify-center gap-2 py-2.5 text-xs font-medium hover:bg-pharmacy-green/10 transition-colors"
+                    >
+                      <span>🇹🇷</span> TR
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLanguage('en');
+                        setIsDropdownOpen(false);
+                      }}
+                      className="flex w-full items-center justify-center gap-2 py-2.5 text-xs font-medium hover:bg-pharmacy-green/10 transition-colors border-t border-deep-ocean/5"
+                    >
+                      <span>🇺🇸</span> EN
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </nav>
       </header>
 
       {/* Mobile Menu Drawer */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 top-16 z-40 bg-black/30 md:hidden"
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
-      )}
-      <div
-        className={`fixed left-0 right-0 top-16 z-40 border-b border-deep-ocean/10 bg-clinical-white/95 backdrop-blur-xl transform transition-all duration-300 ease-out md:hidden ${
-          isMenuOpen
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-full opacity-0 pointer-events-none"
-        }`}
-      >
-        <ul className="flex flex-col space-y-0">
-          
-          {navItems.map((item) => (
-            <li
-              key={item.href}
-              className="border-b border-deep-ocean/5 last:border-b-0"
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 top-16 z-40 bg-black/30 md:hidden"
+              onClick={closeMenu}
+              aria-hidden="true"
+            />
+            <motion.div
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed left-0 right-0 top-16 z-40 border-b border-deep-ocean/10 bg-clinical-white/95 backdrop-blur-xl md:hidden"
             >
-              <Link
-                href={item.href}
-                onClick={(e) => handleLinkClick(e, item.href)}
-                className="block px-6 py-4 text-center text-lg font-medium text-deep-ocean/70 transition-colors active:bg-deep-ocean/5 hover:text-deep-ocean hover:bg-deep-ocean/5"
-              >
-                {item[language]}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+              <ul className="flex flex-col">
+                {navItems.map((item) => (
+                  <li
+                    key={item.href}
+                    className="border-b border-deep-ocean/5 last:border-b-0"
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={(e) => handleLinkClick(e, item.href)}
+                      className="block px-6 py-4 text-center text-lg font-medium text-deep-ocean/70 transition-colors active:bg-deep-ocean/5 hover:text-deep-ocean hover:bg-deep-ocean/5"
+                    >
+                      {item[language as keyof typeof item]}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Spacer for fixed navbar */}
       <div className="h-16" />
