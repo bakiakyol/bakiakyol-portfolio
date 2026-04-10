@@ -3,10 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bakiakyol.com";
+// Eğer Vercel'e atarsan sitenin gerçek URL'ini buraya yazacaksın (örn: https://bakiakyol.com)
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bakiakyol.com"; 
 const profileTitle = "Baki Akyol | İstinye Üniversitesi Eczacılık Öğrencisi";
 const profileDescription =
-  "Baki Akyol, İstinye Üniversitesi Eczacılık Fakültesi öğrencisi ve ISUPA Kulübü yönetim ekibi üyesidir.";
+  "Baki Akyol, İstinye Üniversitesi Eczacılık Fakültesi öğrencisi ve ISUPA Kulübü yönetim ekibi üyesidir. Sağlık, teknoloji ve akademik projeler.";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     description: profileDescription,
     images: [
       {
-        url: "/profile.jpg",
+        url: "/profile.jpg", // Sitenin public klasöründeki fotoğrafın link atıldığında çıkacak
         width: 1200,
         height: 630,
         alt: "Baki Akyol",

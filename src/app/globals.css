@@ -64,3 +64,20 @@
     @apply text-sm text-deep-ocean/60;
   }
 }
+/* --- ÖZEL SCROLLBAR TASARIMI --- */
+::-webkit-scrollbar {
+  width: 8px; /* İncecik ve zarif */
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0b0e; /* Arka planla aynı siyah/koyu ton */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f222e; /* Görünmez gibi duran çok koyu gri */
+  border-radius: 10px; /* Kenarları yumuşak */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a855f7; /* Fareyle üstüne gelince yanan neon mor! */
+}
