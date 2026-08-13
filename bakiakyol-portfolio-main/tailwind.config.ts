@@ -9,9 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "pharmacy-green": "#A855F7", // OLED black tema için mor accent renk
-        "clinical-white": "#050505", // Ana arka plan
-        "deep-ocean": "#F5F7FA", // Ana yazı rengi
+        // Apple-style: temiz beyaz sistem
+        "pharmacy-green": "#0071E3",   // Apple mavi — accent rengi
+        "clinical-white": "#FAFAFA",   // Ana arka plan (neredeyse saf beyaz)
+        "deep-ocean": "#1D1D1F",       // Apple'ın koyu gri metin rengi
       },
     },
   },

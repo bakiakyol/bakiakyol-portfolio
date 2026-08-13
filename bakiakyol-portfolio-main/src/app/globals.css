@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+:root {
+  --background: #FAFAFA;
+  --foreground: #1D1D1F;
+
+  /* Apple system font stack */
+  --font-apple: -apple-system, "SF Pro Display", "SF Pro Text", BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Apple spacing & radius tokens */
+  --radius-card: 18px;
+  --radius-pill: 980px;
+
+  /* Apple-style glass surface */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-clinical-white text-deep-ocean antialiased;
+    font-family: var(--font-geist-sans), var(--font-apple);
+    line-height: 1.65;
+    /* Apple'ın subtle arka plan dokusu */
+    background-color: #F5F5F7;
+  }
+
+  ::selection {
+    background: rgba(0, 113, 227, 0.18);
+    color: #1D1D1F;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight text-deep-ocean;
+    line-height: 1.1;
+    /* Apple'ın optical tracking değerleri */
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+    letter-spacing: -0.02em;
+  }
+
+  h4 {
+    @apply text-lg;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    @apply text-base md:text-lg;
+    color: rgba(29, 29, 31, 0.72);
+    line-height: 1.6;
+  }
+
+  small {
+    @apply text-sm;
+    color: rgba(29, 29, 31, 0.5);
+  }
+
+  /* Apple-style press feedback — pointer-down'da anlık */
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Apple-style interactive scale on press */
+  .apple-press {
+    transition: transform 100ms ease-out, opacity 100ms ease-out;
+  }
+  .apple-press:active {
+    transform: scale(0.97);
+    opacity: 0.85;
+  }
+}
+
+/* Apple-tarzı scrollbar — minimal ve zarif */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 113, 227, 0.5);
+}
+
+/* Reduced motion desteği */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
