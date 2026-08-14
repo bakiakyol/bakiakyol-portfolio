@@ -69,8 +69,10 @@ const Typewriter = ({ text, delay = 0 }: { text: string; delay?: number }) => {
   const [displayedText, setDisplayedText] = useState(text);
   const shouldReduceMotion = useReducedMotion();
   const hasMountedRef = useRef(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     let index = 0;
     let frameId: number | undefined;
     let intervalId: number | undefined;
@@ -111,7 +113,7 @@ const Typewriter = ({ text, delay = 0 }: { text: string; delay?: number }) => {
   return (
     <span className="inline-flex min-h-[1.5em] items-center">
       {displayedText}
-      {!shouldReduceMotion && (
+      {(!mounted || !shouldReduceMotion) && (
         <motion.span
           animate={{ opacity: [1, 0.2, 1] }}
           transition={{ repeat: Infinity, duration: 1.1, ease: "easeInOut" }}
