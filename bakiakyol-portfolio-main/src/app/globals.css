@@ -2,124 +2,74 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  --background: #FAFAFA;
-  --foreground: #1D1D1F;
+  --bg-page:    #F5F5F7;
+  --bg-card:    #FFFFFF;
+  --text-1:     #1D1D1F;
+  --text-2:     rgba(29,29,31,0.62);
+  --text-3:     rgba(29,29,31,0.40);
+  --border:     rgba(0,0,0,0.08);
+  --shadow-sm:  0 1px 8px rgba(0,0,0,0.06);
+  --shadow-md:  0 6px 28px rgba(0,0,0,0.10);
+  --glass:      rgba(245,245,247,0.85);
+}
 
-  /* Apple system font stack */
-  --font-apple: -apple-system, "SF Pro Display", "SF Pro Text", BlinkMacSystemFont, "Segoe UI", sans-serif;
-
-  /* Apple spacing & radius tokens */
-  --radius-card: 18px;
-  --radius-pill: 980px;
-
-  /* Apple-style glass surface */
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+.dark {
+  --bg-page:    #000000;
+  --bg-card:    #1C1C1E;
+  --text-1:     #F5F5F7;
+  --text-2:     rgba(245,245,247,0.60);
+  --text-3:     rgba(245,245,247,0.36);
+  --border:     rgba(255,255,255,0.08);
+  --shadow-sm:  0 1px 8px rgba(0,0,0,0.40);
+  --shadow-md:  0 6px 28px rgba(0,0,0,0.50);
+  --glass:      rgba(28,28,30,0.85);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-page);
+  --color-foreground: var(--text-1);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
   body {
-    @apply bg-clinical-white text-deep-ocean antialiased;
-    font-family: var(--font-geist-sans), var(--font-apple);
-    line-height: 1.65;
-    /* Apple'ın subtle arka plan dokusu */
-    background-color: #F5F5F7;
+    background-color: var(--bg-page);
+    color: var(--text-1);
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
-  ::selection {
-    background: rgba(0, 113, 227, 0.18);
-    color: #1D1D1F;
-  }
+  ::selection { background: rgba(0,113,227,0.18); color: var(--text-1); }
 
-  h1, h2, h3, h4 {
-    @apply font-semibold tracking-tight text-deep-ocean;
-    line-height: 1.1;
-    /* Apple'ın optical tracking değerleri */
+  h1,h2,h3,h4 {
+    color: var(--text-1);
+    font-weight: 600;
     letter-spacing: -0.025em;
+    line-height: 1.1;
   }
+  h1 { font-size: clamp(2.5rem,5vw,4.5rem); letter-spacing: -0.04em; line-height: 1.05; }
+  h2 { font-size: clamp(1.75rem,3vw,2.5rem); letter-spacing: -0.03em; }
+  h3 { font-size: clamp(1.1rem,2vw,1.5rem); letter-spacing: -0.02em; }
 
-  h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-  }
+  p { color: var(--text-2); line-height: 1.6; }
 
-  h2 {
-    @apply text-3xl md:text-4xl;
-    letter-spacing: -0.03em;
-  }
+  button, a { -webkit-tap-highlight-color: transparent; }
 
-  h3 {
-    @apply text-xl md:text-2xl;
-    letter-spacing: -0.02em;
-  }
-
-  h4 {
-    @apply text-lg;
-    letter-spacing: -0.015em;
-  }
-
-  p {
-    @apply text-base md:text-lg;
-    color: rgba(29, 29, 31, 0.72);
-    line-height: 1.6;
-  }
-
-  small {
-    @apply text-sm;
-    color: rgba(29, 29, 31, 0.5);
-  }
-
-  /* Apple-style press feedback — pointer-down'da anlık */
-  button, a {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Apple-style interactive scale on press */
-  .apple-press {
-    transition: transform 100ms ease-out, opacity 100ms ease-out;
-  }
-  .apple-press:active {
-    transform: scale(0.97);
-    opacity: 0.85;
-  }
+  .apple-press { transition: transform 100ms ease-out, opacity 100ms ease-out; }
+  .apple-press:active { transform: scale(0.97); opacity: 0.85; }
 }
 
-/* Apple-tarzı scrollbar — minimal ve zarif */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.18);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 113, 227, 0.5);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,113,227,0.4); }
 
-/* Reduced motion desteği */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *, *::before, *::after {
+  html { scroll-behavior: auto; }
+  *,*::before,*::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

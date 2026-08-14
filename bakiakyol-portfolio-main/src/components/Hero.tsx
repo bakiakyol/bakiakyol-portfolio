@@ -201,7 +201,8 @@ export default function Hero({ about }: HeroProps) {
   return (
     <motion.section
       id="hakkimda"
-      className="relative mt-3 mb-4 flex min-h-[72vh] w-full flex-col items-center justify-start overflow-hidden rounded-[22px] border border-deep-ocean/8 bg-white px-6 pt-12 pb-12 shadow-[0_2px_24px_rgba(0,0,0,0.07)] sm:pt-16 sm:pb-14 md:px-10 md:pt-20 lg:px-14 lg:pt-24"
+      className="relative mt-3 mb-4 flex min-h-[72vh] w-full flex-col items-center justify-start overflow-hidden rounded-[22px] px-6 pt-12 pb-12 sm:pt-16 sm:pb-14 md:px-10 md:pt-20 lg:px-14 lg:pt-24"
+      style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)", boxShadow: "var(--shadow-sm)" }}
       variants={containerVariants}
       initial="hidden"
       animate="show"
@@ -226,11 +227,11 @@ export default function Hero({ about }: HeroProps) {
             <>
               {/* Apple: büyük, güçlü, sıkı tracking */}
               <div className="space-y-3">
-                <h1 className="font-bold text-deep-ocean">
+                <h1 className="font-bold" style={{ color: "var(--text-1)" }}>
                   {about.name}
                 </h1>
 
-                <h2 className="text-xl font-medium text-deep-ocean/50 sm:text-2xl" style={{ letterSpacing: "-0.02em" }}>
+                <h2 className="text-xl font-medium sm:text-2xl" style={{ letterSpacing: "-0.02em", color: "var(--text-3)" }}>
                   <Typewriter
                     text={about.title?.[language] || about.title?.tr || ""}
                     delay={100}
@@ -238,7 +239,7 @@ export default function Hero({ about }: HeroProps) {
                 </h2>
               </div>
 
-              <p className="max-w-lg text-center text-base leading-relaxed text-deep-ocean/62 md:text-left md:text-[17px]">
+              <p className="max-w-lg text-center text-base leading-relaxed md:text-left md:text-[17px]" style={{ color: "var(--text-2)" }}>
                 {about.biography?.[language] || about.biography?.tr}
               </p>
 
