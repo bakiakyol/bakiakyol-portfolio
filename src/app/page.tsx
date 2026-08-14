@@ -15,7 +15,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="min-h-screen bg-clinical-white">
+    <div className="min-h-screen">
       <Navbar />
       <main className="mx-auto w-full max-w-6xl space-y-24 px-6 py-12 md:space-y-28 md:py-16">
         <Hero about={about ?? null} />

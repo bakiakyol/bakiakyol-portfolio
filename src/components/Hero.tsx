@@ -137,31 +137,32 @@ function InfoBlock({
     <div className={`flex flex-col gap-5 ${className}`}>
       <div className="flex flex-col gap-5 sm:flex-row">
         <div className="flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-deep-ocean/40">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--text-3)" }}>
             {heroLabels.university[language]}
           </p>
-          <p className="mt-1.5 text-sm font-medium text-deep-ocean/80 text-center md:text-left">
+          <p className="mt-1.5 text-sm font-medium text-center md:text-left" style={{ color: "var(--text-2)" }}>
             {about.university?.[language] || about.university?.tr}
           </p>
         </div>
         <div className="flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-deep-ocean/40">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--text-3)" }}>
             {heroLabels.gradYear[language]}
           </p>
-          <p className="mt-1.5 text-sm font-medium text-deep-ocean/80 text-center md:text-left">
+          <p className="mt-1.5 text-sm font-medium text-center md:text-left" style={{ color: "var(--text-2)" }}>
             {about.graduationYear}
           </p>
         </div>
       </div>
       <div>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-deep-ocean/40">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--text-3)" }}>
           {heroLabels.interests[language]}
         </p>
         <div className="mt-2.5 flex flex-wrap justify-center gap-1.5 md:justify-start">
           {(about.interests?.[language] || about.interests?.tr || []).map((interest, index) => (
             <span
               key={index}
-              className="rounded-full border border-deep-ocean/10 bg-white px-3 py-1 text-xs font-medium text-deep-ocean/70 shadow-[0_1px_4px_rgba(0,0,0,0.06)]"
+              className="rounded-full border px-3 py-1 text-xs font-medium"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-page)", color: "var(--text-2)", boxShadow: "var(--shadow-sm)" }}
             >
               {interest}
             </span>
@@ -188,7 +189,8 @@ function SocialButton({ href, label, children, external = true }: {
       whileHover={{ y: -2, scale: 1.06 }}
       whileTap={{ scale: 0.93 }}
       transition={appleSpring}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-deep-ocean/10 bg-white text-deep-ocean/60 shadow-[0_1px_4px_rgba(0,0,0,0.07)] transition-all duration-150 hover:border-pharmacy-green/30 hover:text-pharmacy-green hover:shadow-[0_4px_14px_rgba(0,113,227,0.18)]"
+      className="flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-150 hover:border-pharmacy-green/30 hover:text-pharmacy-green"
+      style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-page)", color: "var(--text-2)", boxShadow: "var(--shadow-sm)" }}
     >
       {children}
     </motion.a>
@@ -259,7 +261,7 @@ export default function Hero({ about }: HeroProps) {
               </div>
             </>
           ) : (
-            <h1 className="text-4xl font-bold text-deep-ocean">{heroLabels.loadingError[language]}</h1>
+            <h1 className="text-4xl font-bold" style={{ color: "var(--text-1)" }}>{heroLabels.loadingError[language]}</h1>
           )}
         </motion.div>
 
@@ -272,7 +274,8 @@ export default function Hero({ about }: HeroProps) {
             whileHover={{ y: -5, scale: 1.015 }}
             whileTap={{ scale: 0.99 }}
             transition={appleSpring}
-            className="w-full max-w-56 overflow-hidden rounded-[20px] border border-deep-ocean/8 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.1)] md:max-w-full"
+            className="w-full max-w-56 overflow-hidden rounded-[20px] border md:max-w-full"
+            style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-card)", boxShadow: "var(--shadow-md)" }}
           >
             <div className="aspect-square w-full">
               <Image
